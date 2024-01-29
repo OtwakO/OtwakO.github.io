@@ -204,21 +204,21 @@
         <div class="textarea-box">
             <textarea id="fileContent" placeholder="Paste your content here..." name="fileContent"
                 hx-get="http://localhost:5858/save" hx-trigger="keyup changed delay:500ms"
-                hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')"
-                hx-include="#fileName">test</textarea>
+                hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')" hx-include="#fileName"
+                hx-swap="none"></textarea>
         </div>
 
         <div class="buttons-box">
             <input type="text" id="fileName" placeholder="home.txt" value="home.txt" name="fileName"
                 hx-get="http://localhost:5858/load" hx-trigger="change delay:500ms" hx-target="#fileContent"
-                hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')">
+                hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')" hx-swap="outerHTML">
             <button id="saveFile" hx-get="http://localhost:5858/save" hx-include="#fileName, #fileContent"
                 hx-trigger="click" hx-swap="none"
                 hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')">Save(Ctrl +
                 S)</button>
             <button id="loadFile" hx-get="http://localhost:5858/load" hx-include="#fileName" hx-trigger="click"
-                hx-target="#fileContent"
-                hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')">Load(Ctrl +
+                hx-target="#fileContent" hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')"
+                hx-swap="outerHTML">Load(Ctrl +
                 L)</button>
             <button id="toggleMode">Dark Mode(Ctrl + B)</button>
         </div>
