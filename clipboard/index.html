@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <link rel="icon" href="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='yes' name='mobile-web-app-capable' />
     <title>Web Clipboard</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <style>
+        @font-face {
+            font-family: "customFont";
+            src: url("fonts/MapleMono-VF.ttf");
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
@@ -36,7 +42,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             resize: none;
             transition: background-color 0.5s;
-            font-family: 'cascadia mono', monospace;
+            font-family: customFont, 'cascadia mono', monospace;
             transition: .2s;
 
         }
@@ -76,6 +82,10 @@
             flex-direction: column;
         }
 
+        .buttons-box button {
+            font-family: system-ui, Arial, Helvetica, sans-serif;
+        }
+
         .bigflexbox {
             width: 100%;
             display: flex;
@@ -104,7 +114,7 @@
         }
 
         input {
-            font-family: 'cascadia mono', 'Courier New', Courier, monospace;
+            font-family: system-ui, Arial, 'cascadia mono', 'Courier New', Courier, monospace;
             margin-top: 10px;
             border: transparent solid 1px;
             font-size: x-large;
