@@ -326,6 +326,14 @@
     // 頁面加載時 
     window.onload = function () {
         load_file();
+
+        //加載暗黑模式
+        var storedDarkMode = localStorage.getItem('darkMode');
+        console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
+        if (storedDarkMode == 'true') {
+            toggleDarkMode();
+        }
+        loadEmojiIcon('📋');
     };
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -334,14 +342,6 @@
         if (storedFileContent) {
             fileNameInput.value = storedFileContent;
             console.log('從 localStorage 加載文件名: ' + storedFileContent);
-            
-            //加載暗黑模式
-            var storedDarkMode = localStorage.getItem('darkMode');
-            console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
-            if (storedDarkMode == 'true') {
-                toggleDarkMode();
-            }
-            loadEmojiIcon('📋');
         }
     }, true);
 
