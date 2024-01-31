@@ -6,7 +6,7 @@
     <link rel="icon" href="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content='yes' name='mobile-web-app-capable' />
-    <meta content='yes' name='apple-mobile-web-app-capable'/>
+    <meta content='yes' name='apple-mobile-web-app-capable' />
     <title>Web Clipboard</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <style>
@@ -325,21 +325,26 @@
 
     // 頁面加載時 
     window.onload = function () {
+
+    };
+
+    window.addEventListener('DOMContentLoaded', function () {
         //加載文件名框
         var storedFileContent = localStorage.getItem('fileName');
         if (storedFileContent) {
             fileNameInput.value = storedFileContent;
             console.log('從 localStorage 加載文件名: ' + storedFileContent);
             load_file();
+
+            //加載暗黑模式
+            var storedDarkMode = localStorage.getItem('darkMode');
+            console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
+            if (storedDarkMode == 'true') {
+                toggleDarkMode();
+            }
+            loadEmojiIcon('📋');
         }
-        //加載暗黑模式
-        var storedDarkMode = localStorage.getItem('darkMode');
-        console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
-        if (storedDarkMode == 'true') {
-            toggleDarkMode();
-        }
-        loadEmojiIcon('📋');
-    };
+    }, true);
 
 </script>
 
