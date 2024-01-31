@@ -210,13 +210,13 @@
     </style>
 </head>
 
-<body>
+<body class="body">
     <div class="bigflexbox">
         <div class="textarea-box">
             <textarea id="fileContent" placeholder="Paste your content here..." name="fileContent"
                 hx-get="https://clipboard.otwako.com/save" hx-trigger="keyup changed delay:500ms"
                 hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')" hx-include="#fileName"
-                hx-swap="none"></textarea>
+                hx-swap="none" hx-vals="js:{darkmode: localStorage.getItem('darkMode')}"></textarea>
         </div>
 
         <div class="buttons-box">
@@ -229,7 +229,7 @@
                 S)</button>
             <button id="loadFile" hx-get="https://clipboard.otwako.com/load" hx-include="#fileName" hx-trigger="click"
                 hx-target="#fileContent" hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')"
-                hx-swap="outerHTML">Load(Ctrl +
+                hx-swap="outerHTML" hx-vals="js:{darkmode: localStorage.getItem('darkMode')}">Load(Ctrl +
                 L)</button>
             <button id="toggleMode">Dark Mode(Ctrl + B)</button>
         </div>
@@ -315,6 +315,10 @@
         document.querySelector("#loadFile").click()
     }
 
+    function load_darkMode() {
+
+    }
+
     // 自動保存文件名框 到 localStorage
     var fileNameInput = document.getElementById('fileName');
     fileNameInput.onchange = function () {
@@ -334,15 +338,15 @@
         if (storedFileContent) {
             fileNameInput.value = storedFileContent;
             console.log('從 localStorage 加載文件名: ' + storedFileContent);
-
-            //加載暗黑模式
-            var storedDarkMode = localStorage.getItem('darkMode');
-            console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
-            if (storedDarkMode == 'true') {
-                toggleDarkMode();
-            }
-            loadEmojiIcon('📋');
         }
+
+        //加載暗黑模式
+        var storedDarkMode = localStorage.getItem('darkMode');
+        console.log('從 localStorage 加載暗黑模式: ' + storedDarkMode);
+        if (storedDarkMode == 'true') {
+            toggleDarkMode();
+        }
+        loadEmojiIcon('📋');
     }, true);
 
 </script>
