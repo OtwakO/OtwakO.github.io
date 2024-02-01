@@ -212,9 +212,9 @@
 
 <body class="body">
     <div class="bigflexbox">
-        <div class="textarea-box">
+        <div class="textarea-box" hx-get="https://clipboard.otwako.com/save">
             <textarea id="fileContent" placeholder="Paste your content here..." name="fileContent"
-                hx-get="https://clipboard.otwako.com/save" hx-trigger="keyup changed delay:500ms"
+                hx-trigger="keyup changed delay:500ms"
                 hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')" hx-include="#fileName"
                 hx-swap="none" hx-vals="js:{darkmode: localStorage.getItem('darkMode')}"></textarea>
         </div>
