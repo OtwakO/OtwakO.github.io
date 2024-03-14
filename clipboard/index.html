@@ -214,7 +214,7 @@
     <div class="bigflexbox">
         <div class="textarea-box">
             <textarea class="save" id="fileContent" placeholder="Paste your content here..." name="fileContent"
-                hx-get="" hx-include="#fileName" hx-swap="none"
+                hx-post="" hx-include="#fileName" hx-swap="none"
                 hx-vals="js:{darkmode: localStorage.getItem('darkMode')}" hx-trigger="keyup changed delay:500ms"
                 hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')" hx-include="#fileName"
                 hx-swap="none"></textarea>
@@ -224,7 +224,7 @@
             <input class="load" type="text" id="fileName" placeholder="home.txt" value="home.txt" name="fileName"
                 hx-get="" hx-trigger="change delay:500ms" hx-target="#fileContent"
                 hx-on:htmx:after-request="showToast('♻️ ' + fileName.value + ' Loaded!')" hx-swap="outerHTML">
-            <button class="save" id="saveFile" hx-get="" hx-include="#fileName, #fileContent" hx-trigger="click"
+            <button class="save" id="saveFile" hx-post="" hx-include="#fileName, #fileContent" hx-trigger="click"
                 hx-swap="none" hx-on:htmx:after-request="showToast('💾 ' + fileName.value + ' Saved!')">Save(Ctrl +
                 S)</button>
             <button class="load" id="loadFile" hx-get="" hx-include="#fileName" hx-trigger="click"
@@ -243,7 +243,7 @@
     function setbackendServer() {
         var backendServer = "https://clipboard.otwako.com"
         document.querySelectorAll(".save").forEach(element => {
-            element.setAttribute("hx-get", `${backendServer}/save`)
+            element.setAttribute("hx-post", `${backendServer}/save`)
         });
         document.querySelectorAll(".load").forEach(element => {
             element.setAttribute("hx-get", `${backendServer}/load`)
